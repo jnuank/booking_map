@@ -1,4 +1,4 @@
 /**
- * データソース層
+ * プレゼンテーション層
  */
 package book.presentation;
