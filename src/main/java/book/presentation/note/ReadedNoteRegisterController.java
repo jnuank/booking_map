@@ -37,13 +37,13 @@ public class ReadedNoteRegisterController {
 
         return "note/register/form";
     }
-//
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder) {
-//        binder.setAllowedFields(
-//                "note.value",
-//                "bookTitle.value"
-//        );
-//    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.setAllowedFields(
+                "note.value",
+                "bookTitle.value"
+        );
+    }
 
 }
