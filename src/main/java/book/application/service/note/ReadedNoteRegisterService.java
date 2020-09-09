@@ -1,7 +1,5 @@
 package book.application.service.note;
 
-import book.domain.model.book.book.BookTitle;
-import book.domain.model.note.note.Note;
 import book.domain.model.note.note.NoteRequest;
 import book.domain.model.note.note.ReadingNote;
 import org.springframework.stereotype.Service;
@@ -12,6 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReadedNoteRegisterService {
     // なにかレポジトリが必要
+//    NoteRepository repository;
+
+//    ReadedNoteRegisterService(NoteRepository repository) {
+//        this.repository = repository;
+//    }
 
     /**
      * 読書メモを書く
@@ -19,7 +22,5 @@ public class ReadedNoteRegisterService {
     public void wrote(NoteRequest noteRequest) {
 
         var readedNote = new ReadingNote(noteRequest.note(), noteRequest.bookTitle());
-
-
     }
 }

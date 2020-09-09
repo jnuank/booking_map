@@ -3,16 +3,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
-<mapper>
+<mapper namespace="book.infrastructure.datasource.note.NoteMapper">
     <select id="newNoteNumber" resultType="int">
         SELECT NEXTVAL('読書.読書メモ')
     </select>
 
-<!--    <resultMap id="readingNote" type="book.domain.model.note.note.ReadingNote">-->
-<!--        <association property=""-->
-<!--    </resultMap>-->
-<!--    -->
+    <resultMap id="readingNote" type="book.domain.model.loan.loan.Loan">
+        <association property="member"
+                     column="memberNumber.value"
+                     select="book.infrastructure.datasource.member.MemberMapper.selectMember"/>
+        <association property="item"
+                     column="itemNumber.value"
+                     select="book.infrastructure.datasource.item.ItemMapper.selectItem"/>
+    </resultMap>
 
     <insert id="insertNote">
         INSERT INTO 読書.読書メモ(メモ番号, 本のタイトル, メモ)
@@ -20,9 +23,9 @@
     </insert>
 
     <select id="selectByNumber" resultMap="readingNote">
-        SELECT  読書メモ.メモ番号 as "noteNumber.value"
-                読書メモ.本のタイトル as "title.value"
-                読書メモ.メモ as "note.value"
+        SELECT 読書メモ.メモ番号 as "noteNumber.value"
+        読書メモ.本のタイトル as "title.value"
+        読書メモ.メモ as "note.value"
         FROM 読書.読書メモ
         WHERE 読書メモ.メモ番号 = #{noteNumber.value}
     </select>
