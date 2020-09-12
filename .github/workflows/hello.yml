@@ -1,4 +1,4 @@
-name: Hello, World!
+name: deploy to beanstalk
 on:
   push:
     tags:
@@ -6,7 +6,27 @@ on:
 
 jobs:
   build:
-    name: Greeting
+    name: deploy
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "Hello, World!"
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Beanstalk Deploy
+        uses: einaregilsson/beanstalk-deploy@v11
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: booking_map
+          environment_name: booking-map-dev2
+          version_label: ${{ github.run_number }}
+          region: ap-northeast-1
+          deployment_package: build/libs/booking_map.jar
