@@ -8,7 +8,7 @@
         SELECT NEXTVAL('読書.読書メモ')
     </select>
 
-    <resultMap id="readingNote" type="book.domain.model.loan.loan.Loan">
+    <resultMap id="readingNote" type="book.domain.model.note.note.Note">
         <association property="member"
                      column="memberNumber.value"
                      select="book.infrastructure.datasource.member.MemberMapper.selectMember"/>
