@@ -6,8 +6,17 @@ package book.domain.model.note.note.NoteNumber;
 public class NoteNumber {
     int value;
 
-    public int value() { return value; }
+    public NoteNumber(int value) {
+        this.value = value;
+    }
+
+    public int value() {
+        return value;
+    }
+
 
     @Override
-    public String toString() { return String.valueOf(value); }
+    public String toString() {
+        return String.valueOf(value);
+    }
 }
