@@ -22,4 +22,5 @@ public interface NoteMapper {
 
     List<ReadingNote> selectByNumber(@Param("noteNumber") NoteNumber noteNumber);
 
+    List<ReadingNote> selectAll();
 }

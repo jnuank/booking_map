@@ -2,37 +2,32 @@ package book.domain.model.book.book;
 
 import book.domain.model.link.link.LinkObject;
 
-import javax.validation.constraints.NotNull;
-
 /**
- * 本のタイトル
+ * 章
  */
-public class BookTitle implements LinkObject {
-    @NotNull(message = "本のタイトルを入力してください。")
+public class Chapter implements LinkObject {
     private String value;
     private String linkId;
 
-    public BookTitle(String value) {
+    public Chapter(String value) {
         this.value = value;
+
     }
 
     @Deprecated
-    BookTitle() {
+    Chapter() {
+    }
 
+    public static Chapter empty() {
+        return new Chapter();
     }
 
     public String value() {
         return value;
     }
 
-    public static BookTitle empty() {
-        return new BookTitle();
-    }
-
-
     @Override
     public String getLinkId() {
         return linkId;
     }
 }
-

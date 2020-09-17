@@ -3,8 +3,11 @@ package book.infrastructure.datasource.note;
 import book.application.repository.NoteRepository;
 import book.domain.model.note.note.NoteNumber.NoteNumber;
 import book.domain.model.note.note.NoteRequest;
+import book.domain.model.note.note.ReadingNote;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class NoteDataSource implements NoteRepository {
@@ -23,4 +26,11 @@ public class NoteDataSource implements NoteRepository {
 
         noteMapper.insertNote(noteNumber.value(), noteRequest.bookTitle(), noteRequest.note());
     }
+
+    @Override
+    public List<ReadingNote> showAll() {
+        return noteMapper.selectAll();
+    }
+
+
 }

@@ -8,24 +8,31 @@
         SELECT NEXTVAL('読書.読書メモ')
     </select>
 
-    <resultMap id="readingNote" type="book.domain.model.note.note.Note">
-        <association property="member"
-                     column="memberNumber.value"
-                     select="book.infrastructure.datasource.member.MemberMapper.selectMember"/>
-        <association property="item"
-                     column="itemNumber.value"
-                     select="book.infrastructure.datasource.item.ItemMapper.selectItem"/>
-    </resultMap>
+    <!--    <resultMap id="readingNote" type="book.domain.model.note.note.Note">-->
+    <!--        <association property="bookTitle"-->
+    <!--                     column="bookTitle.value"-->
+    <!--                     select="book.infrastructure.datasource.member.MemberMapper.selectMember"/>-->
+    <!--        <association property="item"-->
+    <!--                     column="itemNumber.value"-->
+    <!--                     select="book.infrastructure.datasource.item.ItemMapper.selectItem"/>-->
+    <!--    </resultMap>-->
 
     <insert id="insertNote">
         INSERT INTO 読書.読書メモ(メモ番号, 本のタイトル, メモ)
         VALUES (#{noteNumber}, #{bookTitle.value}, #{note.value} )
     </insert>
 
-    <select id="selectByNumber" resultMap="readingNote">
-        SELECT 読書メモ.メモ番号 as "noteNumber.value"
-        読書メモ.本のタイトル as "title.value"
-        読書メモ.メモ as "note.value"
+    <select id="selectAll" resultType="book.domain.model.note.note.ReadingNote">
+        SELECT 読書メモ.メモ番号 as "noteNumber.value",
+        読書メモ.本のタイトル as "title.value",
+        読書メモ.メモ as "note.value",
+        FROM 読書.読書メモ
+    </select>
+
+    <select id="selectByNumber" resultType="book.domain.model.note.note.ReadingNote">
+        SELECT 読書メモ.メモ番号 as "noteNumber.value",
+        読書メモ.本のタイトル as "title.value",
+        読書メモ.メモ as "note.value",
         FROM 読書.読書メモ
         WHERE 読書メモ.メモ番号 = #{noteNumber.value}
     </select>
