@@ -20,6 +20,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Create source bundle
+        run: zip -r source_bundle.jar build/libs/booking_map.jar .ebextensions
 
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v11
@@ -30,4 +32,4 @@ jobs:
           environment_name: booking-map-dev
           version_label: ${{ github.run_number }}
           region: ap-northeast-1
-          deployment_package: build/libs/booking_map.jar
+          deployment_package: source_bundle.jar
