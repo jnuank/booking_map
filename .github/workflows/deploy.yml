@@ -3,12 +3,13 @@ name: deploy to beanstalk
 #  push:
 #    tags:
 #      - '*'
-on: workflow_dispatch
-  inputs:
-    versionLabel:
-      required: true
-      description: バージョンラベル
-      default: app-d54f-201001_154513
+on:
+  workflow_dispatch:
+    inputs:
+      versionLabel:
+        required: true
+        description: バージョンラベル
+        default: app-d54f-201001_154513
 
 jobs:
   build:
