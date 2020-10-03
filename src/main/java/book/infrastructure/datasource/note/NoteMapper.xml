@@ -23,9 +23,9 @@
     </insert>
 
     <select id="selectAll" resultType="book.domain.model.note.note.ReadingNote">
-        SELECT 読書メモ.メモ番号 as "noteNumber.value",
-        読書メモ.本のタイトル as "title.value",
-        読書メモ.メモ as "note.value",
+        SELECT
+        読書メモ.本のタイトル as "title",
+        読書メモ.メモ as "note",
         FROM 読書.読書メモ
     </select>
 

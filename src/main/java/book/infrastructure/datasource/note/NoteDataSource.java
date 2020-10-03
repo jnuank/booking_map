@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Random;
 
 @Repository
 public class NoteDataSource implements NoteRepository {
@@ -22,7 +23,8 @@ public class NoteDataSource implements NoteRepository {
     @Override
     @Transactional
     public void wrote(NoteRequest noteRequest) {
-        NoteNumber noteNumber = new NoteNumber(1);
+        Random rnd = new Random();
+        NoteNumber noteNumber = new NoteNumber((int) (rnd.nextDouble() * 10000.0));
 
         noteMapper.insertNote(noteNumber.value(), noteRequest.bookTitle(), noteRequest.note());
     }

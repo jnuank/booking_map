@@ -25,6 +25,12 @@ public class ReadedNoteRegisterController {
         this.service = service;
     }
 
+    // モデルを追加する
+    @ModelAttribute("readingNote")
+    List<ReadingNote> readingNote() {
+        return service.showAll();
+    }
+
     @GetMapping
     private String init(Model model) {
         model.addAttribute("noteRequest", NoteRequest.empty());

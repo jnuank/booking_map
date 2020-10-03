@@ -32,5 +32,6 @@ public class ReadedNoteRegisterService {
         return this.repository.showAll();
     }
 
+
 }
 
