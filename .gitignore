@@ -1,8 +1,4 @@
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
 
 # For idea
 **/out
@@ -44,3 +40,11 @@ node_modules/
 # For Cypress
 cypress/videos
 cypress/screenshots
+
+
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
