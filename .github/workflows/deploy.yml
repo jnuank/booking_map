@@ -22,11 +22,11 @@ jobs:
         run: ./gradlew build
       - name: Create source bundle
         run: zip -r source_bundle.jar build/libs/booking_map.jar .ebextensions Procfile
-      - name: Generate build number
-        id: buildnumber
-        uses: einaregilsson/build-number@v1
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
+      #      - name: Generate build number
+      #        id: buildnumber
+      #        uses: einaregilsson/build-number@v1
+      #        with:
+      #          token: ${{secrets.GITHUB_TOKEN}}
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v11
         with:
@@ -34,7 +34,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: booking_map
           environment_name: booking-map-dev
-          #          version_label: ${{ github.run_number }}
-          version_label: ${{ steps.buildnumber.outputs.build_number }}
+          version_label: ${{ github.run_number }}
+          #          version_label: ${{ steps.buildnumber.outputs.build_number }}
           region: ap-northeast-1
-          deployment_package: source_bundle.jar
+#          deployment_package: source_bundle.jar
